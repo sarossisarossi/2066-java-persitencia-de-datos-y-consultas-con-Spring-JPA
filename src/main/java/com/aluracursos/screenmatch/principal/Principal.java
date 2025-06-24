@@ -19,9 +19,11 @@ public class Principal {
         var opcion = -1;
         while (opcion != 0) {
             var menu = """
-                    1 - Buscar series 
-                    2 - Buscar episodios
-                    3 - Mostrar series buscadas
+                    1 - Buscar libro por título 
+                    2 - Listado de libros registrados en la Base de Datos
+                    3 - Listado de autores registrados
+                    4 - Listado de autores vivos en un año especifico
+                    5 - Listado de libros por idioma(ES ,EN ,FR ,PT)
                                   
                     0 - Salir
                     """;
@@ -55,6 +57,16 @@ public class Principal {
         DatosSerie datos = conversor.obtenerDatos(json, DatosSerie.class);
         return datos;
     }
+
+    private DatosSerie getDatosSerie() {
+        System.out.println("Escribe el nombre de la serie que deseas buscar");
+        var nombreSerie = teclado.nextLine();
+        var json = consumoApi.obtenerDatos(URL_BASE + nombreSerie.replace(" ", "+") + API_KEY);
+        System.out.println(json);
+        DatosSerie datos = conversor.obtenerDatos(json, DatosSerie.class);
+        return datos;
+    }
+
     private void buscarEpisodioPorSerie() {
         DatosSerie datosSerie = getDatosSerie();
         List<DatosTemporadas> temporadas = new ArrayList<>();
