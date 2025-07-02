@@ -7,9 +7,9 @@ import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record DatosLibro(
-        @JsonAlias("id") Integer id,
+        @JsonAlias("id") long id,
         @JsonAlias("title") String titulo,
-        @JsonAlias("authors") List<Author> listadoAutores,
-        @JsonAlias("languages") List<String> listadoIdiomas,
+        @JsonAlias("authors") List<DatosAutor> listadoAutores,
+        @JsonAlias("languages") List<String> listadoIdiomas
         // Puedes agregar más campos aquí si quieres
-) {}
+){}
